@@ -4,25 +4,31 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 import os
 from uuid import uuid4
+from django.utils.deconstruct import deconstructible
 
 
-def path_and_rename(path):
-    def wrapper(instance, filename):
+@deconstructible
+class PathAndRename(object):
+
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        # get filename
-        if instance.pk:
-            filename = '{}-{}.{}'.format(instance.pk, uuid4().hex, ext)
-        else:
-            # set filename as random string
-            filename = '{}.{}'.format(uuid4().hex, ext)
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
-        return os.path.join(path, filename)
-    return wrapper
+        return os.path.join(self.path, filename)
+
+
+backdrop_path = PathAndRename('wedding/profile_backdrop/')
+mc_path = PathAndRename('wedding/profile_photo/')
+gallery_path = PathAndRename('wedding/gallery/')
 
 
 class Backdrops(models.Model):
     image = ProcessedImageField(verbose_name='배경사진',
-                                upload_to=path_and_rename('wedding/profile_backdrop/'),
+                                upload_to=backdrop_path,
                                 processors=[ResizeToFit(1200, 1200)],
                                 format='JPEG',
                                 options={'quality': 80})
@@ -37,7 +43,7 @@ class Mc(models.Model):
     title = models.CharField('호칭', max_length=20)
     tags = TaggableManager()
     description = models.TextField('설명')
-    profile_photo = models.ImageField('프로필사진', upload_to=path_and_rename('wedding/profile_photo/'))
+    profile_photo = models.ImageField('프로필사진', upload_to=mc_path)
     profile_backdrop = models.ForeignKey(Backdrops, on_delete=models.SET_NULL, null=True)
     profile = models.TextField('프로필', blank=True)
     mcdisplay = models.BooleanField('홈페이지노출여부', default=True)
@@ -50,7 +56,7 @@ class Mc(models.Model):
 class Gallery(models.Model):
     wedding_mc = models.ForeignKey(Mc, on_delete=models.CASCADE)
     image = ProcessedImageField(verbose_name='사회자사진',
-                                upload_to=path_and_rename('wedding/gallery/'),
+                                upload_to=gallery_path,
                                 processors=[ResizeToFit(1700, 1700)],
                                 format='JPEG',
                                 options={'quality': 80})
