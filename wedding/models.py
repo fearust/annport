@@ -21,6 +21,7 @@ def path_and_rename(path):
     return wrapper
 
 
+
 class Backdrops(models.Model):
     image = ProcessedImageField(verbose_name='배경사진',
                                 upload_to=path_and_rename('wedding/profile_backdrop/'),
