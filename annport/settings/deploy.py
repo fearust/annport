@@ -7,8 +7,12 @@ ALLOWED_HOSTS = ['3.38.69.237', 'annport.com']
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'annport',
+        'USER': 'dbmasteruser',
+        'PASSWORD': 'ajaF]dD^!cKwi,4HWn-!VK%>|Zm~dO7{',
+        'HOST': 'ls-ad590dbf59aa2d32c41ac76e1c621a3dbd7da20c.czm6uidjjfmt.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
