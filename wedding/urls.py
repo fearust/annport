@@ -3,6 +3,8 @@ from . import views
 
 app_name = 'wedding'
 urlpatterns = [
+    path('', views.wedding_index, name='wedding_index'),
+    path('service/', views.wedding_service, name='wedding_service'),
     path('detail/<int:mc_id>/', views.wedding_detail, name='wedding_detail'),
     path('list/', views.wedding_list, name='wedding_list'),
     path('cast/', views.wedding_cast, name='wedding_cast'),

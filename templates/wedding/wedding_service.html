@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    ANNPORT Wedding : 아나포트 웨딩 서비스
+{% endblock %}
+
+{% block navbar %}
+    {% include "wedding/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="service_img" style="background-image: url('{% static "/images/service1.jpg" %}'); height: 250px;">
+        <div class="container">
+            <h1 style="color: white; padding: 15px 30px;">ANNPORT<br>WEDDING SERVICE</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>전문성을 갖춘 진행</h2>
+            <div class="col-12 col-lg-8 service_desc_txt">
+                아나포트는 아나운서 엔터테인먼트로서 방송, 행사, 광고, 강의 등 각 분야에서 다양한 경력을 쌓은 전문가들이
+                체계적인 웨딩 교육을 통해 전문적인 사회 진행을 하고 있습니다.
+                정확한 발음과 듣기 좋은 목소리, 안정감 있는 원활한 아나운서의 결혼식 사회를 만나보세요!
+            </div>
+        </div>
+
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>품격 있는 진행</h2>
+            <div class="col-12 col-lg-8 service_desc_txt">
+                아나포트는 결혼식의 품격을 중요한 가치로 생각합니다.
+                평생 한 번 뿐인 소중한 결혼식이 더욱 빛날 수 있도록 장난스럽거나 격이 떨어지지 않는 고품격 사회 진행을 지향합니다.
+                결혼식의 품격은 높이고, 세련되고 깔끔한 진행으로 높은 고객 만족도를 실현합니다.
+            </div>
+        </div>
+
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>믿을 수 있는 진행</h2>
+            <div class="col-12 col-lg-8 service_desc_txt">
+                아나포트는 2014년부터 수많은 신랑신부님과 함께 행복한 결혼식을 만들어 왔습니다.
+                오랜 시간과 비용을 들여 준비한 여러분의 소중한 결혼식, 그 마침표를 찍는 사회자의 역할은 너무나 중요합니다.
+                이제 마음 놓고 아나포트에 맡겨주세요!
+            </div>
+        </div>
+        <div class="pt-4"></div>
+    </div>
+
+    <div class="service_img" style="background-image: url('{% static "/images/service2.jpg" %}'); height: 150px;">
+        <div class="container">
+            <h1 style="color: white; padding: 15px 30px;">FAQ</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>Q. 사회자를 지정할 수 있나요?</h2>
+            <div class="col-12 col-lg-8 service_desc_faq">
+                A. 섭외 희망하시는 사회자를 선택하실 수 있으며, 적합한 사회자를 추천받으실 수도 있습니다.
+            </div>
+        </div>
+
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>Q. 사회비가 어떻게 되나요?</h2>
+            <div class="col-12 col-lg-8 service_desc_faq">
+                A. 아나포트는 사회자별로 사회비가 다르게 책정되어 있습니다. 문의주시면 상세한 안내를 받으실 수 있습니다.
+            </div>
+        </div>
+
+        <div class="service_bar"></div>
+        <div class="row service_desc">
+            <h2>Q. 사전 미팅이 있나요?</h2>
+            <div class="col-12 col-lg-8 service_desc_faq">
+                A. 아나포트의 사회자들은 예약 확정 후 신랑신부님과 사전 미팅(대면 또는 비대면)을 통해
+        식순 기획 및 진행 사항을 상의하고 있습니다.
+            </div>
+        </div>
+        <div class="pt-4"></div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

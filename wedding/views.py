@@ -1,10 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from wedding.models import Mc
+from wedding.models import Mc, Homepage
 from taggit.models import Tag
 # from random import shuffle
 from .forms import CastForm
 from django.utils import timezone
 
+
+def wedding_index(request):
+    homepage = Homepage.objects.exclude(display_main=False).distinct()
+    homepage = homepage.order_by('display_priority')
+    context = {
+        'homepage': homepage
+    }
+    return render(request, 'wedding/home.html', context)
+
+def wedding_service(request):
+    return render(request, 'wedding/wedding_service.html')
 
 def wedding_detail(request, mc_id):
     mc = get_object_or_404(Mc, pk=mc_id)

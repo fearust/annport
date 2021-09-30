@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top p-0 ann_nav ann_nav_wedding">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'wedding:wedding_index' %}">
             <div class="ann_logo_wrap">
                 <div>
                     <img class="ann_logo_wedding" src="/static/images/annwedding_logo.svg" alt="" width="200px">
@@ -22,7 +22,7 @@
             <ul class="navbar-nav">
                 <!-- 현재 페이지 <a class="nav-link active" aria-current="page" href="#"> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">아나포트 웨딩 서비스</a>
+                    <a class="nav-link" href="{% url 'wedding:wedding_service' %}">아나포트 웨딩 서비스</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'wedding:wedding_list' %}">소속 사회자</a>

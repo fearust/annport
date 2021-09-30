@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    ANNPORT Wedding
+{% endblock %}
+
+{% block navbar %}
+    {% include "wedding/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div id="fullcover">
+        <div id="carouselwrap" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for home in homepage %}
+                <div class="carousel-item home_content {% if forloop.counter == 1 %}active{% endif %}"
+                        style="background: url('{{ home.main_backdrop.url }}');
+                                {% if home.text_color_dark %}color: black;{% else %}color: white;{% endif %}">
+                    {% if home.back_panel %}
+                        <div class="back_panel"
+                             style="{% if home.text_color_dark %}background-color: #ffffff66;{% else %}background-color: #00000066;{% endif %}">
+                    {% endif %}
+                    <div class="home_sub_title">
+                        {{ home.sub_title | linebreaks }}
+                    </div>
+                    <div class="home_title" style="{% if home.title_color %}color:{{ home.title_color }};{% endif %}">
+                        {{ home.title | linebreaks }}
+                    </div>
+                    <div class="home_description">
+                        {{ home.description | linebreaks }}
+                    </div>
+                    {% if home.buttons_text|length > 0 and home.buttons_url|length > 0 %}
+                        <a href="{{ home.buttons_url }}" type="button" class="btn home_button">
+                        {{ home.buttons_text }}
+                        </a>
+                    {% endif %}
+                    {% if home.back_panel %}</div>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+const fullcover = document.getElementById('fullcover')
+console.log(window.innerHeight)
+fullcover.style.height = (window.innerHeight) - 100
+window.addEventListener('resize', (e) => {
+    fullcover.style.height = (window.innerHeight) - 100
+});
+</script>
+
+{% endblock %}

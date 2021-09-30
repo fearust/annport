@@ -54,7 +54,7 @@ textarea {
 .ann_logo_wrap {
   position: relative;
 }
-.ann_logo_wrap > div {
+.ann_logo_wrap div {
   position: absolute;
 }
 #footer {
@@ -74,7 +74,7 @@ textarea {
     width: 200px;
     height: 73px;
   }
-  .ann_logo_wrap > div {
+  .ann_logo_wrap div {
     top: 43%;
   }
   .ann_logo_wedding {
@@ -93,13 +93,138 @@ textarea {
     width: 120px;
     height: 50px;
   }
-  .ann_logo_wrap > div {
+  .ann_logo_wrap div {
     top: 10%;
   }
   .ann_logo_wedding {
     width: 120px;
   }
 }
+
+/* 메인페이지 */
+#fullcover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+#fullcover .carousel {
+  width: 100%;
+  height: 100%;
+}
+#fullcover .carousel-item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.home_content {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.home_title {
+  font-size: 10vmin;
+  font-weight: 900;
+  line-height: 11vmin;
+}
+.home_sub_title{
+  font-size: 5vmin;
+  font-weight: 900;
+  line-height: 6vmin;
+}
+.home_description{
+  font-size: 1.2em;
+  font-weight: 800;
+  line-height: 1.4em;
+}
+.home_button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 0;
+  padding: 10px 40px;
+  font-weight: 800;
+  transition: 0.3s;
+}
+.home_button:hover{
+  background-color: #afb5bf;
+}
+.back_panel {
+  backdrop-filter: blur(4px);
+  padding: 5vmin;
+  border-radius: 10px;
+  border-top: 1px solid #ffffffbb;
+  border-left: 1px solid #ffffff80;
+  border-right: 1px solid #ffffff80;
+  box-shadow: 3px 10px 10px 0 #00000055;
+}
+/* PC(lg) */
+@media (min-width: 992px) {
+  .home_content {
+    padding: 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .home_content {
+    padding: 20px;
+  }
+}
+
+
+
+/* 웨딩서비스소개 */
+.service_img {
+  position: relative;
+
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  z-index: -99;
+  margin-bottom: 30px;
+}
+.service_img::after {
+  content: "";
+  z-index: -98;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+  background: #ffffff33;
+}
+.service_img h1{
+  font-size: 7vmin;
+  font-weight: 800;
+}
+.service_desc {
+  font-size: 1.2em;
+  padding: 20px 30px 30px 30px;
+}
+.service_desc h2{
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.service_desc_faq{
+  padding-left: 2.5em;
+}
+.service_bar{
+  width: 30px;
+  height: 4px;
+  background-color: #f6895b;
+  margin-left: 30px;
+}
+
+
+
 
 /* 아나운서 이미지 사이즈 225x300px(450x600px)이하 또는 281x500px(562x1000px)이하 */
 

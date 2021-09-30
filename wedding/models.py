@@ -24,6 +24,7 @@ class PathAndRename(object):
 backdrop_path = PathAndRename('wedding/profile_backdrop/')
 mc_path = PathAndRename('wedding/profile_photo/')
 gallery_path = PathAndRename('wedding/gallery/')
+homepage_path = PathAndRename('wedding/homepage/')
 
 
 class Backdrops(models.Model):
@@ -81,3 +82,23 @@ class Cast(models.Model):
     customer_memo = models.TextField('고객 메모', blank=True)
     staff_memo = models.TextField('스탭 메모', blank=True)
     create_date = models.DateTimeField('문의시간')
+
+
+class Homepage(models.Model):
+    title = models.TextField('타이틀', blank=True)
+    sub_title = models.TextField('서브타이틀', blank=True)
+    description = models.TextField('설명', blank=True)
+    buttons_text = models.CharField('버튼글씨', max_length=50, blank=True)
+    buttons_url = models.URLField('버튼주소', blank=True)
+
+    main_backdrop = ProcessedImageField(verbose_name='홈사진',
+                                        upload_to=homepage_path,
+                                        processors=[ResizeToFit(2000, 2000)],
+                                        format='JPEG',
+                                        options={'quality': 60})
+    title_color = models.CharField('타이틀글자색상(hex)', max_length=10, blank=True)
+    text_color_dark = models.BooleanField('검은or하얀글자', default=True)
+    back_panel = models.BooleanField('반투명배경', default=False)
+
+    display_main = models.BooleanField('메인에 표시', default=True)
+    display_priority = models.IntegerField('메인 표시 우선순위', default=10)
