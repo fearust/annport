@@ -27,7 +27,7 @@ class Backdrops(models.Model):
                                 processors=[ResizeToFit(1200, 1200)],
                                 format='JPEG',
                                 options={'quality': 80})
-    name = models.CharField('호칭', max_length=50, blank=True)
+    name = models.CharField('배경이미지제목', max_length=50, blank=True)
 
     def __str__(self):
         return self.name
