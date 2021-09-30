@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    ANNPORT Wedding : 소속 사회자
+{% endblock %}
+
+{% block navbar %}
+    {% include "wedding/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+    <!-- 진행자 열람창 -->
+    <div class="container my-5 pt-5">
+        <div class="px-2 d-inline">
+            {% if mc_search_name or mc_search_tag %}
+                <a href="{% url "wedding:wedding_list" %}">
+                <span class="badge rounded-pill text-dark mc_tag_reset_btn">검색결과 초기화</span>
+                </a>
+                <span class="badge bg-secondary">{{ mc_search_name }}</span>
+                <span class="badge bg-secondary">{{ mc_search_tag }}</span>
+                <span style="font-size: 0.8em;">의 검색결과</span>
+            {% endif %}
+        </div>
+        <div class="row pt-4">
+            <!-- 진행자 검색 및 태그 선택 -->
+            <div class="col-12 col-lg-4 mb-5">
+                <div class="mb-2">
+                    <input
+                            id="mc_finder"
+                            class="form-control form-control-lg"
+                            type="text"
+                            placeholder="진행자의 이름으로 검색하세요."
+                            value="{{ mc_search_name|default_if_none:'' }}"
+                    />
+                </div>
+
+                <div id="mc_tag_selector">
+                    <div class="py-2 px-3 mb-1" id="mc_tag_selector_desc">
+                        <i class="bx bxs-down-arrow"></i>
+                        <span>원하시는 진행자 이미지를 선택하세요.</span>
+                    </div>
+                    <div id="mc_tag_reset">
+                        <span class="badge rounded-pill text-dark mc_tag_reset_btn" onclick="unselect_button()">
+                            태그 초기화
+                        </span>
+                        <!--
+                        <div id="mc_tag_reset_btn" onclick="unselect_button()">태그 초기화</div>  -->                   </div>
+                    <div id="mc_tag_list" class="d-flex flex-wrap justify-content-start">
+                        {% for tag in all_tag_list %}
+                        <a href="#" class="btn btn-sm search_check"
+                           id="search_check_{{ forloop.counter0 }}" name="search_check_{{ forloop.counter0 }}"
+                           role="button" data-bs-toggle="button">#{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-dark search_btn" id="search_btn">
+                        <i
+                                class="bx bx-search bx-sm"
+                                style="color: white; padding: 0 5px"
+                        ></i>
+                        <span>검색</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 진행자 목록 -->
+            <div class="col-12 col-lg-8">
+                <div id="mc_grid">
+                    {% if mclist.exists %}
+                        {% for mc in mclist %}
+                            <div class="mc_card" onclick="location.href='{% url "wedding:wedding_detail" mc.id %}'" style="background-image: url('{{ mc.profile_backdrop.image.url }}');">
+                                <img class="mc_card_image" src='{{ mc.profile_photo.url }}'>
+                                <div class="mc_card_overlay py-2">
+                                    <h6>{{ mc.name }} {{ mc.title }}</h6>
+                                    <span>{% for mctag in mc.tags.all %}#{{ mctag }} {% endfor %}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div id="no_mc">
+                            조건에 맞는 결과가 없습니다. <br>
+                            조건을 바꿔 다시 검색해주세요.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="search_form" method="get" action="{% url 'wedding:wedding_list' %}">
+        <input type="hidden" id="mc_search_name" name="mc_search_name" value="{{ mc_search_name|default_if_none:'' }}">
+        <input type="hidden" id="mc_search_tag" name="mc_search_tag" value="{{ mc_search_tag|default_if_none:'' }}">
+    </form>
+{% endblock %}
+
+{% block script %}
+<script>
+const search_input = document.getElementById('mc_finder')
+const tag_buttons = document.querySelectorAll('.search_check')
+const search_btn = document.getElementById('search_btn')
+const search_form = document.getElementById('search_form')
+let mc_search_name = document.getElementById('mc_search_name')
+let mc_search_tag = document.getElementById('mc_search_tag')
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    let tags_list = mc_search_tag.value.split(',')
+    tag_buttons.forEach(function (button) {
+        for (let i in tags_list) {
+            if(button.textContent.substring(1).trim() === tags_list[i] ) {
+                button.setAttribute('aria-pressed', "true")
+                button.classList.add("active")
+            }
+        }
+    })
+});
+
+function unselect_button() {
+    tag_buttons.forEach(function (button) {
+        if(button.getAttribute('aria-pressed') === "true"){
+            button.setAttribute('aria-pressed', "false")
+            button.classList.remove("active")
+        }
+    })
+}
+
+search_btn.addEventListener('click', mcSearch)
+function mcSearch(e) {
+    let mc_search_tag_list = []
+    mc_search_name.value = search_input.value
+    tag_buttons.forEach(function (button) {
+        if(button.getAttribute('aria-pressed') === "true"){
+            mc_search_tag_list.push(button.textContent.substring(1).trim())
+            button.setAttribute('aria-pressed', "false")
+            button.classList.remove("active")
+        }
+    })
+    mc_search_tag.value = mc_search_tag_list
+    search_form.submit();
+}
+</script>
+{% endblock %}

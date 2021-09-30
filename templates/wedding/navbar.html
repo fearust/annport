@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top p-0 ann_nav ann_nav_wedding">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <div class="ann_logo_wrap">
+                <div>
+                    <img class="ann_logo_wedding" src="/static/images/annwedding_logo.svg" alt="" width="200px">
+                </div>
+            </div>
+        </a>
+        <button
+                class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <box-icon name="menu" size="md"></box-icon>
+        </button>
+        <div class="collapse navbar-collapse align-self-end justify-content-end mb-2" id="navbarNav">
+            <ul class="navbar-nav">
+                <!-- 현재 페이지 <a class="nav-link active" aria-current="page" href="#"> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">아나포트 웨딩 서비스</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'wedding:wedding_list' %}">소속 사회자</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'wedding:wedding_cast' %}">섭외 문의</a>
+                </li>
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" href="#">제휴 혜택</a>
+                </li>
+                -->
+            </ul>
+        </div>
+    </div>
+</nav>

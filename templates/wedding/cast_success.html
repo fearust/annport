@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    ANNPORT Wedding : 섭외 문의
+{% endblock %}
+
+{% block navbar %}
+    {% include "wedding/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+    <div class="m-3 p-5 justify-content-center align-content-center border border-dark" style="text-align: center; border-radius: 10px;">
+        <div>작성하신 내용으로 전송되었습니다. 확인 후 아나포트 담당자가 연락드리겠습니다.</div><br>
+        <div>감사합니다 :)</div><br>
+        <div>
+            <a href="{% url 'wedding:wedding_list' %}" type="button" class="btn btn-dark">사회자 목록으로 돌아갑니다.</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
