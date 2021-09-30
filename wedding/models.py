@@ -27,6 +27,10 @@ class Backdrops(models.Model):
                                 processors=[ResizeToFit(1200, 1200)],
                                 format='JPEG',
                                 options={'quality': 80})
+    name = models.CharField('호칭', max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Mc(models.Model):
