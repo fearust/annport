@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from wedding.models import Mc
 from taggit.models import Tag
-from random import shuffle
+# from random import shuffle
 from .forms import CastForm
 from django.utils import timezone
 
@@ -23,7 +23,7 @@ def wedding_list(request):
         mc_search_tag_list = [tag.strip() for tag in mc_search_tag.split(',')]
         mclist = mclist.filter(tags__name__in=mc_search_tag_list).distinct()
 
-    shuffle(mclist)
+    # shuffle(mclist)
     mclist = mclist.order_by('-mcmain')
     all_tag_list = list(Tag.objects.all())
 
