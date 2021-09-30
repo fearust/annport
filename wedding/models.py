@@ -1,26 +1,26 @@
 from django.db import models
 from taggit.managers import TaggableManager
-from imagekit.models import ProcessedImageField, ImageSpecField
+from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 import os
 from uuid import uuid4
 
 
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}-{}.{}'.format(instance.pk, uuid4().hex, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
+
+
 class Backdrops(models.Model):
-    def path_and_rename(path):
-        def wrapper(instance, filename):
-            ext = filename.split('.')[-1]
-            # get filename
-            if instance.pk:
-                filename = '{}-{}.{}'.format(instance.pk, uuid4().hex, ext)
-            else:
-                # set filename as random string
-                filename = '{}.{}'.format(uuid4().hex, ext)
-            # return the whole path to the file
-            return os.path.join(path, filename)
-
-        return wrapper
-
     image = ProcessedImageField(verbose_name='배경사진',
                                 upload_to=path_and_rename('wedding/profile_backdrop/'),
                                 processors=[ResizeToFit(1200, 1200)],
@@ -33,20 +33,6 @@ class Backdrops(models.Model):
 
 
 class Mc(models.Model):
-    def path_and_rename(path):
-        def wrapper(instance, filename):
-            ext = filename.split('.')[-1]
-            # get filename
-            if instance.pk:
-                filename = '{}-{}.{}'.format(instance.pk, uuid4().hex, ext)
-            else:
-                # set filename as random string
-                filename = '{}.{}'.format(uuid4().hex, ext)
-            # return the whole path to the file
-            return os.path.join(path, filename)
-
-        return wrapper
-
     name = models.CharField('이름', max_length=10)
     title = models.CharField('호칭', max_length=20)
     tags = TaggableManager()
@@ -62,20 +48,6 @@ class Mc(models.Model):
 
 
 class Gallery(models.Model):
-    def path_and_rename(path):
-        def wrapper(instance, filename):
-            ext = filename.split('.')[-1]
-            # get filename
-            if instance.pk:
-                filename = '{}-{}.{}'.format(instance.pk, uuid4().hex, ext)
-            else:
-                # set filename as random string
-                filename = '{}.{}'.format(uuid4().hex, ext)
-            # return the whole path to the file
-            return os.path.join(path, filename)
-
-        return wrapper
-
     wedding_mc = models.ForeignKey(Mc, on_delete=models.CASCADE)
     image = ProcessedImageField(verbose_name='사회자사진',
                                 upload_to=path_and_rename('wedding/gallery/'),
