@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['3.38.69.237']
+ALLOWED_HOSTS = ['3.38.69.237', 'annport.com']
 
 # Database
 DATABASES = {
