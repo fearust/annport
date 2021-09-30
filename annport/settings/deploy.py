@@ -16,6 +16,6 @@ DATABASES = {
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/ubuntu/annport/static'
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/ubuntu/annport/media'
+MEDIA_ROOT = '/home/ubuntu/annport/media'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 100*1024*1024
