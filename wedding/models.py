@@ -6,6 +6,7 @@ import os
 from uuid import uuid4
 
 
+
 def path_and_rename(path):
     def wrapper(instance, filename):
         ext = filename.split('.')[-1]
