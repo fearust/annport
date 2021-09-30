@@ -15,6 +15,7 @@ DATABASES = {
 # Static, media
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/ubuntu/annport/static'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/home/ubuntu/annport/media'
 
