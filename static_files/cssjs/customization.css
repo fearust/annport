@@ -305,28 +305,28 @@ textarea {
 /* bootstrap breakpoint(>=) sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px  */
 @media (max-width: 575px) {
   #mc_grid {
-    grid-template-columns: repeat(1, minmax(200px,400px));
+    grid-template-columns: repeat(1, 1fr);
     justify-content: center;
   }
 }
 @media (min-width: 576px) {
   #mc_grid {
-    grid-template-columns: repeat(2, minmax(200px,auto));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 768px) {
   #mc_grid {
-    grid-template-columns: repeat(3, minmax(200px,auto));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 992px) {
   #mc_grid {
-    grid-template-columns: repeat(3, minmax(200px,auto));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 1200px) {
   #mc_grid {
-    grid-template-columns: repeat(3, minmax(200px,auto));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 .mc_card::after {
