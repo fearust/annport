@@ -78,7 +78,7 @@
                                 <img class="mc_card_image" src='{{ mc.profile_photo.url }}'>
                                 <div class="mc_card_overlay py-2">
                                     <h6>{{ mc.name }} {{ mc.title }}</h6>
-                                    <span>{% for mctag in mc.tags.all %}#{{ mctag }} {% endfor %}</span>
+                                    <span class="d-inline-block text-truncate">{% for mctag in mc.tags.all %}#{{ mctag }} {% endfor %}</span>
                                 </div>
                             </div>
                         {% endfor %}
