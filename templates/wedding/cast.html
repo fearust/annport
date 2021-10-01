@@ -87,17 +87,4 @@
 {% endblock %}
 
 {% block script %}
-    <link href="{% static 'cssjs/jquery.datetimepicker.min.css' %}" type="text/css" rel="stylesheet">
-    <script src="{% static 'cssjs/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'cssjs/jquery.datetimepicker.full.min.js' %}"></script>
-    <script>
-        jQuery(function(){
-            $.datetimepicker.setLocale('ko');
-            jQuery('#wedding_date').datetimepicker({
-                maxDate: 0,
-                timepicker:true,
-                format:'Y-m-d H:i'
-            });
-        });
-    </script>
 {% endblock %}
