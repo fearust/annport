@@ -14,7 +14,7 @@ class GalleryInline(admin.StackedInline):
 
 @admin.register(Mc)
 class McAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'fullname']
+    list_display = ['pk', 'fullname', 'mcdisplay', 'mcmain']
     list_display_links = ['pk', 'fullname']
     inlines = (YoutubeInline, GalleryInline)
 
