@@ -73,7 +73,7 @@ class Cast(models.Model):
     groom = models.CharField('신랑님 성함', max_length=20, blank=True)
     bride_phone = models.CharField('신부님 연락처', max_length=20, blank=True)
     groom_phone = models.CharField('신랑님 연락처', max_length=20, blank=True)
-    wedding_date = models.DateTimeField('본식 날짜,시간', null=True, blank=True)
+    wedding_date = models.CharField('본식 날짜,시간', max_length=100, null=True, blank=True)
     wedding_place = models.CharField('본식 장소', max_length=50, blank=True)
     officiator = models.BooleanField('주례', default=False)
     wedding_reception = models.BooleanField('2부 진행', default=False)
