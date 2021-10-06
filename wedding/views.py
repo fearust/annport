@@ -29,19 +29,21 @@ def wedding_detail(request, mc_id):
 def wedding_list(request):
     mc_search_name = request.GET.get('mc_search_name', '')
     mc_search_tag = request.GET.get('mc_search_tag', '')
-    mclist = Mc.objects.exclude(mcdisplay=False)
+    mclist0 = Mc.objects.exclude(mcdisplay=False)
     if mc_search_name:
-        mclist = mclist.filter(name__icontains=mc_search_name).distinct()
+        mclist0 = mclist0.filter(name__icontains=mc_search_name).distinct()
     if mc_search_tag:
         mc_search_tag_list = [tag.strip() for tag in mc_search_tag.split(',')]
-        mclist = mclist.filter(tags__name__in=mc_search_tag_list).distinct()
+        mclist0 = mclist0.filter(tags__name__in=mc_search_tag_list).distinct()
 
-    mclist1 = list(mclist.filter(mcmain=True).distinct())
-    mclist2 = list(mclist.exclude(mcmain=True).distinct())
+    mclist1 = list(mclist0.filter(mcmain=True).distinct())
+    mclist2 = list(mclist0.exclude(mcmain=True).distinct())
     shuffle(mclist1)
     shuffle(mclist2)
 
-    mclist = mclist1 + mclist2
+    mclist = []
+    mclist.extend(mclist1)
+    mclist.extend(mclist2)
     all_tag_list = list(Tag.objects.all())
 
     context = {
