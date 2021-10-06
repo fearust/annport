@@ -1,3 +1,5 @@
+from random import shuffle
+
 from django.shortcuts import render, get_object_or_404, redirect
 from wedding.models import Mc, Homepage
 from taggit.models import Tag
@@ -34,8 +36,12 @@ def wedding_list(request):
         mc_search_tag_list = [tag.strip() for tag in mc_search_tag.split(',')]
         mclist = mclist.filter(tags__name__in=mc_search_tag_list).distinct()
 
-    # shuffle(mclist)
-    mclist = mclist.order_by('-mcmain')
+    mclist1 = list(mclist.filter(mcmain=True).distinct())
+    mclist2 = list(mclist.exclude(mcmain=True).distinct())
+    shuffle(mclist1)
+    shuffle(mclist2)
+
+    mclist = mclist1 + mclist2
     all_tag_list = list(Tag.objects.all())
 
     context = {
