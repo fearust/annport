@@ -69,5 +69,10 @@ def wedding_cast(request):
     context = {'castform': castform}
     return render(request, 'wedding/cast.html', context)
 
+
 def wedding_cast_success(request):
     return render(request, 'wedding/cast_success.html')
+
+
+def partners(request):
+    return render(request, 'wedding/partners_etland.html')
