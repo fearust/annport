@@ -29,12 +29,12 @@ def wedding_detail(request, mc_id):
 def wedding_list(request):
     mc_search_name = request.GET.get('mc_search_name', '')
     mc_search_tag = request.GET.get('mc_search_tag', '')
-    mclist0 = Mc.objects.exclude(mcdisplay=False)
+    mclist0 = Mc.objects.exclude(mcdisplay=False).order_by('-mcmain', '?')
     if mc_search_name:
         mclist0 = mclist0.filter(name__icontains=mc_search_name).distinct()
     if mc_search_tag:
         mc_search_tag_list = [tag.strip() for tag in mc_search_tag.split(',')]
-        mclist0 = mclist0.filter(tags__name__in=mc_search_tag_list).distinct().order_by('-mcmain', '?')
+        mclist0 = mclist0.filter(tags__name__in=mc_search_tag_list).distinct()
 
     mclist = mclist0
     all_tag_list = list(Tag.objects.all())
